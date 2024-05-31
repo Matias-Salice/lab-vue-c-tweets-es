@@ -1,4 +1,10 @@
 <script setup>
+import ProfileImage from "./ProfileImage.vue";
+import User from "./User.vue";
+import TimeStamp from "./TimeStamp.vue";
+import Message from "./Message.vue";
+import Actions from "./Actions.vue"; 
+
 defineProps({
   tweet: Object,
 });
@@ -6,28 +12,19 @@ defineProps({
 
 <template>
   <div class="tweet">
-    <img :src="tweet.user.image" class="profile" alt="profile" />
-
+    <ProfileImage :image="tweet.user.image" />
     <div class="body">
       <div class="top">
         <span class="user">
-          <span class="name">{{ tweet.user.name }}</span>
-          <span class="handle">{{ tweet.user.handle }}</span>
+          <User :userData="tweet.user" />
         </span>
-
-        <span class="timestamp">{{ tweet.timestamp }}</span>
+        <span class="timestamp">
+          <TimeStamp :time="tweet.timestamp" />
+        </span>
       </div>
-
-      <p class="message">
-        {{ tweet.message }}
-      </p>
-
+      <Message :message="tweet.message" />
       <div class="actions">
-        <!-- Font Awesome icons -->
-        <i class="far fa-comment"></i>
-        <i class="fas fa-retweet"></i>
-        <i class="far fa-heart"></i>
-        <i class="fas fa-share"></i>
+        <Actions />
       </div>
     </div>
 
